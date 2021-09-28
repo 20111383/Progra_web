@@ -1,0 +1,29 @@
+body{
+    background-color: darkorange;
+}
+#parrafo1{
+    color: peru;
+    background-color: rgb(234, 19, 35);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: smaller;
+}
+#parrafo2{
+    color: blueviolet;
+}
+.letra_azul{
+    color: blueviolet;
+}
+.fondo_celeste{
+    background-color: aqua;
+    color: crimson;
+    opacity: 0.5;
+}
+.bordes{
+    border: medium solid;
+}
+
+/*
+sin ningun simbolo: nos referimos a todos los elementos htmls por funcion
+#: indica que nos referimos a un elemento cuyo id.
+.: esta en funcion de class.
+*/
