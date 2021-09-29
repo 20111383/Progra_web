@@ -71,10 +71,10 @@ const letraInputOnkeypress = (evt) =>{
         //ERROR
         if(cont < 6){
             cargaNuevaImagen(++cont)
-        }
-        if(cont == 6){
-            console.log("PERDIO")
-            mostrarAlerta(false)
+            if(cont == 6){
+                console.log("PERDIO")
+                mostrarAlerta(false)
+            }
         }
     }else{
         refranOculto = nuevoRefranOculto
