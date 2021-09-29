@@ -4,9 +4,9 @@ const refranes = [
     "QUIEN HIERRO MATA A HIERRO MUERE"
 ]
 
-var refran = ""
-var refranOculto = ""
-
+let refran = ""
+let refranOculto = ""
+let cont = 0
 const elegirRefran = () =>{
     const pos = Math.round(Math.random()*2);
     return refranes[pos]
@@ -44,15 +44,47 @@ const buscarLetraRefran = (letra, refran, refranOculto) =>{
     return nuevoRefranOculto;
 }
 
+const cargaNuevaImagen = (contador) =>{
+    let img = document.querySelector("#imagen")
+    img.setAttribute("src", "/Front_end/Semana 5/C2/img/hangman-" + contador + ".png")
+}
+
+const mostrarAlerta = (gano) =>{
+    const divAlert = document.createElement("div")
+
+    if(gano){
+        divAlert.setAttribute("class", "alert alert-success mt-4")
+        divAlert.innerText = "Ganador!!!"
+    }else{
+        divAlert.setAttribute("class", "alert alert-danger mt-4")
+        divAlert.innerText = "PERDIO..."
+    }
+    const divParteDerecha = document.querySelector("#parte_derecha")
+    divParteDerecha.appendChild(divAlert)
+}
+
 const letraInputOnkeypress = (evt) =>{
     const letraIngresada = evt.key.toUpperCase()
     const nuevoRefranOculto = buscarLetraRefran(letraIngresada, refran, refranOculto)
     if(refranOculto == nuevoRefranOculto){
         //no encontro una letra
-        console.log("deberia mostrar una imagen")
+        //ERROR
+        if(cont < 6){
+            cargaNuevaImagen(++cont)
+        }
+        if(cont == 6){
+            console.log("PERDIO")
+            mostrarAlerta(false)
+        }
     }else{
         refranOculto = nuevoRefranOculto
         cargarRefran(refranOculto)
+
+        if(refranOculto == refran){
+            //GANO
+            mostrarAlerta(true)
+            console.log("GANO")
+        }
     }
 }
 
