@@ -11,7 +11,7 @@ const generarMatriz = () =>{
 
         for(var j = 1; j < 11;j++){
             var td = document.createElement("td");
-            var posicion = document.createTextNode(i+";"+j);
+            var posicion = document.createTextNode(i+","+j);
             td.appendChild(posicion);
             tr.appendChild(td);
         }
