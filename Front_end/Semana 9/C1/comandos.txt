@@ -1,0 +1,3 @@
+npm init -y > package.json
+npm install express --save > package-lock.json y node_modules
+node index.js > iniciar el servidor
