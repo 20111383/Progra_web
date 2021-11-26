@@ -39,7 +39,6 @@
         </div>
         <div class="mb-3">
             <!-- Banner -->
-            <div><button id="but_borrar" type="button">Borrar SS</button></div>
             <img id="banner" class="img-fluid" src="/imagenes/csgo.jpg"/>
         </div>
         <div class="row">
@@ -48,38 +47,28 @@
                 <div class="card">
                     <h3 class="card-header">Eventos Abiertos</h3>
                     <div class="card-body">
+                        <!-- condicional IF -->
+                        <% if (eventos.length > 0) { %>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-8">
-                                        CS Perú 2021
+                            <% eventos.forEach( (evento) => { %>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <%= evento.nombre %>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-dark btn-sm" 
+                                                type="button">
+                                                Ver
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-4">
-                                        <button class="btn btn-dark" type="button">Ver</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-8">
-                                        CS Perú 2021
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn btn-dark" type="button">Ver</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-8">
-                                        CS Perú 2021
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn btn-dark" type="button">Ver</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>               
+                                </li>
+                            <% }) %>
+                        </ul>
+                        <% }else { %>
+                            <p>No hay eventos Abiertos</p>
+                        <% } %>  
                     </div>
                 </div>
             </div>
@@ -99,22 +88,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>billy</td>
-                                    <td>34</td>
-                                    <td>23</td>
-                                    <td>10</td>
-                                    <td>11</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>joaquin</td>
-                                    <td>12</td>
-                                    <td>10</td>
-                                    <td>11</td>
-                                    <td>10</td>
-                                    <td>3.5</td>
-                                </tr>
+                                <% topPlayers.forEach( (player) => { %>
+                                    <tr>
+                                        <td><%= player.nombre %></td>
+                                        <td><%= player.maps %></td>
+                                        <td><%= player.rounds %></td>
+                                        <td><%= player.k_d %></td>
+                                        <td><%= player.k__d %></td>
+                                        <td><%= player.rating %></td>
+                                    </tr>
+                                <% }) %>
+                                
                             </tbody>
                         </table>
                     </div>
