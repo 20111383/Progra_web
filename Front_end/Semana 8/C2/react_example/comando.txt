@@ -1,0 +1,2 @@
+codigo que genera todo este archivo:
+npx create-react-app todo_app
