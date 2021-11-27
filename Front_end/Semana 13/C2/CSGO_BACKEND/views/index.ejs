@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UL-CS</title>
+        <meta charset="utf-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    </head>
+    <body class="container">
+
+        <%- include('menu') %>
+
+        <div class="mb-3">
+            <!-- Banner -->
+            <img id="banner" class="img-fluid" src="/imagenes/csgo.jpg"/>
+        </div>
+        <div class="row">
+            <!-- Secciones secundarias -->
+            <div class="col">
+                <div class="card">
+                    <h3 class="card-header">Eventos Abiertos</h3>
+                    <div class="card-body">
+                        <!-- condicional IF -->
+                        <% if (eventos.length > 0) { %>
+                        <ul class="list-group list-group-flush">
+                            <% eventos.forEach( (evento) => { %>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <%= evento.nombre %>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-dark btn-sm" 
+                                                type="button">
+                                                Ver
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            <% }) %>
+                        </ul>
+                        <% }else { %>
+                            <p>No hay eventos Abiertos</p>
+                        <% } %>  
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <h3 class="card-header">Top Players</h3>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Player</th>
+                                    <th>Maps</th>
+                                    <th>Rounds</th>
+                                    <th>K-D</th>
+                                    <th>K/D</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% topPlayers.forEach( (player) => { %>
+                                    <tr>
+                                        <td><%= player.nombre %></td>
+                                        <td><%= player.maps %></td>
+                                        <td><%= player.rounds %></td>
+                                        <td><%= player.k_d %></td>
+                                        <td><%= player.k__d %></td>
+                                        <td><%= player.rating %></td>
+                                    </tr>
+                                <% }) %>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <h3 class="card-header">Registra tu equipo</h3>
+                    <div class="card-body">
+                        <form>
+                            <div>
+                                <label class="form-label">Correo</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                            <div>
+                                <label class="form-label">Password</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                            <div>
+                                <label class="form-label">Nombre</label>
+                                <input class="form-control" type="text" />
+                            </div>
+                            <div class="text-end">
+                                <button class="btn btn-warning mt-2" type="button">Registrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <%- include('footer') %>
+    
+        <script src="/js/index.js"></script>
+    </body>
+</html>
+
