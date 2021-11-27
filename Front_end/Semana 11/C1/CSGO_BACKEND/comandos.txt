@@ -6,3 +6,5 @@ npm install nodemon --save-dev >instalar nodemon
 
 npx nodemon index.js > inicializar el servidor
 npx run start:dev > variante luego de esitar el package.json/ script
+
+npm install --save express-session > express session

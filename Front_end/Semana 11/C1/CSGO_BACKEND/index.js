@@ -1,10 +1,22 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+const session = require('express-session')
 
 const PORT = 5000
 const app = express() 
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended : true
+}))
+
 app.use(express.static('assets')) //soporte de archivos estaticos
 app.set('view engine', 'ejs') //configuramos el motor de templates
+app.use(session({
+    secret : "yup",
+    resave : false,
+    saveUninitialized : false
+})) //configuracion de servidor para trabajar sessiones
 
 
 //ENDPOINT
@@ -58,11 +70,39 @@ app.get('/', (req, res) => {
 })
 
 app.get('/torneos', (req, res)=> {
+    const timestampActual = new Date().getTime();
+
+    const dif = timestampActual - req.session.lastLogin
+
+    if (dif < 3 * 60 * 60 * 1000) res.render('torneos')
+    else{
+        req.session.destroy() //destruyes la sesion
+        res.render('/login')
+    }
+
     res.render('torneos')
 })
 
 app.get('/login', (req, res)=> {
-    res.render('login')
+    if (req.session.username != undefined) {
+        req.session.lastLogin = new Date().getTime()
+        res.redirect("/torneos")
+    }else{
+        res.render('login')
+    }
+})
+
+app.post('/login', (req, res)=> {
+    const username = req.body.username
+    const password = req.body.password
+
+    if(username == "pw" && password == "123") {
+        //Login correcto
+        req.session.username = username //guardando variable en session
+        res.redirect("/torneos")
+    }else{
+        res.redirect("/login")
+    }
 })
 
 app.listen(PORT, () => {
