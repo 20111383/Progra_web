@@ -1,0 +1,28 @@
+npm init -y
+npm install express --save
+npm install ejs --save
+
+npm install nodemon --save-dev >instalar nodemon
+
+npx nodemon index.js > inicializar el servidor
+npx run start:dev > variante luego de esitar el package.json/ script
+
+npm install --save express-session > express session
+
+npm install --save sequelize pg pg-hstore > paquetes necesarios para la BD
+npm install --save-dev sequelize-cli > para linea de comandos
+npx sequelize init > inicializar sequelize
+
+en el pgadmin
+login > ulcsgo password: ulcsgo
+
+desde dao> npx sequelize db:create > para crear la base de datos
+desde dao> npx sequelize model:generate --name Torneo --attributes nombre:string,fecha:date,estado:integer > crear datos
+desde dao> npx sequelize db:migrate > migrar datos
+
+en el pgadmin > tables>Torneo -> click_derecho > view/edit > all rows
+
+desde dao> npx sequelize model:generate --name TipoTorneo --attributes nombre:string
+npx sequelize db:migrate
+
+npx sequelize db:migrate:undo --name 20211127180824-create_relation_torneo_tipotorneo > para eliminar una migracion
